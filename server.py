@@ -56,7 +56,8 @@ def stats():
         cur.execute("SELECT name, count FROM greetings ORDER BY count DESC")
         rows = cur.fetchall()
         results = [{"name": row["name"], "count": row["count"]} for row in rows]
-    return jsonify(results)
+        user_count = len(results)
+    return jsonify({"users": results, "count": user_count})
 
 if __name__ == '__main__':
     init_db()

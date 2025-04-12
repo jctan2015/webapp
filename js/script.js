@@ -1,9 +1,12 @@
 async function loadStats() {
     const res = await fetch("/stats");
     const data = await res.json();
+    const statsHeading = document.getElementById("statsTitle");
+    statsHeading.textContent = `Greeting Stats of ${data.count} User${data.count === 1 ? "" : "s"}`;
+
     const tbody = document.getElementById("statsTable").querySelector("tbody");
     tbody.innerHTML = "";
-    data.forEach(entry => {
+    data.users.forEach(entry => {
         const row = document.createElement("tr");
         row.innerHTML = `<td>${entry.name}</td><td>${entry.count}</td>`;
         tbody.appendChild(row);
@@ -36,4 +39,3 @@ document.getElementById("nameInput").addEventListener("keydown", function (event
         greet();
     }
 });
-
