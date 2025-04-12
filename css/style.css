@@ -14,6 +14,8 @@ body {
     padding: 2rem 3rem;
     border-radius: 16px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    max-height: 90vh;
+    overflow-y: auto;
 }
 
 input {
@@ -44,6 +46,15 @@ table {
     border-collapse: collapse;
     margin-top: 2rem;
     font-size: 0.95rem;
+    max-height: 8.5rem;
+    display: block;
+    overflow-y: auto;
+}
+
+table thead, table tbody {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
 }
 
 table th, table td {

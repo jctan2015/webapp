@@ -9,9 +9,10 @@ async function loadStats() {
         tbody.appendChild(row);
     });
 }
+
 loadStats();
 
-document.getElementById("greetBtn").addEventListener("click", async function () {
+async function greet() {
     const name = document.getElementById("nameInput").value.trim();
     if (!name) return;
 
@@ -27,4 +28,12 @@ document.getElementById("greetBtn").addEventListener("click", async function () 
         document.getElementById("counter").textContent = `You have been greeted ${data.count} times.`;
         loadStats();
     }
+}
+
+document.getElementById("greetBtn").addEventListener("click", greet);
+document.getElementById("nameInput").addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+        greet();
+    }
 });
+
