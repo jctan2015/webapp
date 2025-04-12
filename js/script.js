@@ -1,1 +1,1 @@
-console.log('Hello from script.js');
+document.getElementById("greetBtn").addEventListener("click", function () { const name = document.getElementById("nameInput").value.trim(); const greeting = document.getElementById("greeting"); greeting.textContent = name ? `Hello ${name}!` : "Hello World!"; });
