@@ -51,3 +51,14 @@ def greet():
 if __name__ == '__main__':
     init_db()
     app.run(debug=True, port=8000)
+
+@app.route("/stats")
+def stats():
+    with sqlite3.connect(DB_FILE) as conn:
+        conn.row_factory = sqlite3.Row
+        cur = conn.cursor()
+        cur.execute("SELECT name, count FROM greetings ORDER BY count DESC")
+        rows = cur.fetchall()
+        results = [{"name": row["name"], "count": row["count"]} for row in rows]
+    return jsonify(results)
+
