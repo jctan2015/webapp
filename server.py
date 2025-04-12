@@ -48,10 +48,6 @@ def greet():
 
     return jsonify({'message': f'Hello {name}!', 'count': count})
 
-if __name__ == '__main__':
-    init_db()
-    app.run(debug=True, port=8000)
-
 @app.route("/stats")
 def stats():
     with sqlite3.connect(DB_FILE) as conn:
@@ -61,4 +57,9 @@ def stats():
         rows = cur.fetchall()
         results = [{"name": row["name"], "count": row["count"]} for row in rows]
     return jsonify(results)
+
+if __name__ == '__main__':
+    init_db()
+    app.run(debug=True, port=8000)
+
 
