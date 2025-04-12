@@ -53,7 +53,7 @@ def stats():
     with sqlite3.connect(DB_FILE) as conn:
         conn.row_factory = sqlite3.Row
         cur = conn.cursor()
-        cur.execute("SELECT name, count FROM greetings ORDER BY count DESC")
+        cur.execute("SELECT name, count FROM greetings ORDER BY name COLLATE NOCASE ASC")
         rows = cur.fetchall()
         results = [{"name": row["name"], "count": row["count"]} for row in rows]
         user_count = len(results)
